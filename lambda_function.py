@@ -11,10 +11,16 @@ def lambda_handler(event, context):
         # GroupMe API endpoint for posting messages
         groupme_post_message_url = "https://api.groupme.com/v3/bots/post"
 
+        message = "Hey Cracka!"
+
+        if event['sender_id'] == "60388229":
+            message = "Holy shit Omar. God Damn it. I cannot believe this shit. Shame, Shame, Shame on you. For thinking that anybody in this chat will \
+                read any damn message you ever send. How can you be this fucking retarded???? Hit the gym, get bigger, never speak again."
+
         # Prepare the response message
         response_message = {
             "bot_id": bot_id,
-            "text": "Hello Cracka"
+            "text": message
         }
 
         # Send the message
