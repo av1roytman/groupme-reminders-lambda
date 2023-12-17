@@ -24,7 +24,7 @@ jobs:
         pip install -t . requests
 
     - name: Zip the Lambda function and dependencies
-      run: zip -r lambda_function.zip .
+      run: zip -r lambda_function.zip lambda_function.py myenv/Lib/site-packages
 
     - name: Deploy to AWS Lambda
       uses: appleboy/lambda-action@v0.1.9
