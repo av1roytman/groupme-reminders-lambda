@@ -2,6 +2,7 @@ import json
 import requests
 import random
 import openai
+import traceback
 
 def lambda_handler(event, context):
     # Your GroupMe bot ID
@@ -33,6 +34,7 @@ def lambda_handler(event, context):
 
         except Exception as e:
             print(f"Error generating response: {str(e)}")
+            traceback.print_exc()
             message = "Sorry, I couldn't process that."
 
         # Generate random number between 1 and 5
