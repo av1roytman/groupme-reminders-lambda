@@ -23,7 +23,7 @@ def generate_response_and_send_message(input_message):
             messages= [
                 {
                     "role": "system",
-                    "content": "You are a creative and imaginative comedian."
+                    "content": "You are a creative and imaginative comedian that is slightly evil."
                 },
                 {
                     "role": "user",
