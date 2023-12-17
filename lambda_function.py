@@ -26,11 +26,16 @@ def lambda_handler(event, context):
             chat_completion = client.chat.completions.create(
                 messages= [
                     {
-                        "text": event['text'],
+                        "role": "system",
+                        "content": "You are a creative and imaginative comedian."
+                    },
+                    {
                         "role": "user",
+                        "content": event['text'],
                     }
                 ],
                 model="gpt-3.5-turbo-1106",
+                max_tokens=150,
             )
             print("I got here too")
 
