@@ -55,19 +55,21 @@ def generate_response_and_send_message(input_message):
 def lambda_handler(event, context):
     # Your GroupMe bot ID
 
-    random_numer = random.randint(0, 10)
 
     # Check if message contains "Luke Butt" using regex
-    if re.search(r"luke butt", event['text'].lower()):
-        generate_response_and_send_message(event['text'])
+    if event['sender_id'] != bot_id and event['sender_type'] != "bot":
+        random_numer = random.randint(0, 10)
 
-    # Check if the sender is not the bot itself
-    # Assuming the message data includes sender_type or sender_id
-    elif event['sender_id'] != bot_id and event['sender_type'] != "bot" and random_numer > 9:
-        # GroupMe API endpoint for posting messages
+        if re.search(r"luke butt", event['text'].lower()):
+            generate_response_and_send_message(event['text'])
 
-        # Send the message
-        generate_response_and_send_message(event['text'])
+        # Check if the sender is not the bot itself
+        # Assuming the message data includes sender_type or sender_id
+        elif random_numer > 9:
+            # GroupMe API endpoint for posting messages
+
+            # Send the message
+            generate_response_and_send_message(event['text'])
 
     return {
         'statusCode': 200,
