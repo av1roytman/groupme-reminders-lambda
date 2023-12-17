@@ -7,7 +7,7 @@ def lambda_handler(event, context):
 
     # Check if the sender is not the bot itself
     # Assuming the message data includes sender_type or sender_id
-    if event['sender_id'] != bot_id:
+    if event['sender_id'] != bot_id and event['sender_type'] != "bot":
         # GroupMe API endpoint for posting messages
         groupme_post_message_url = "https://api.groupme.com/v3/bots/post"
 
