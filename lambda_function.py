@@ -31,7 +31,6 @@ def lambda_handler(event, context):
                     }
                 ],
                 model="gpt-3.5-turbo-1106",
-                max_tokens=200,
             )
             print("I got here too")
 
