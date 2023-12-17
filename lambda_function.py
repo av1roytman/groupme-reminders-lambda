@@ -42,7 +42,7 @@ def lambda_handler(event, context):
             print("response: ", chat_completion)
 
             # Extract the text from the response
-            message = chat_completion.choices[0].message['content']
+            message = chat_completion['choices'][0]['message']['content']
 
         except Exception as e:
             print(f"Error generating response: {str(e)}")
