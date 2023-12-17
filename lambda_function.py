@@ -40,6 +40,9 @@ def lambda_handler(event, context):
             print("I got here too")
 
             print("response: ", chat_completion)
+            print("choices: ", chat_completion['choices'])
+            print("message:", chat_completion['choices'][0]['message'])
+            print("content:", chat_completion['choices'][0]['message']['content'])
 
             # Extract the text from the response
             message = chat_completion['choices'][0]['message']['content']
