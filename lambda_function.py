@@ -2,6 +2,7 @@ import json
 import requests
 import random
 import openai
+from openai import OpenAI
 import traceback
 
 def lambda_handler(event, context):
@@ -16,21 +17,26 @@ def lambda_handler(event, context):
 
         message = "Hey Cracka!"
 
-        openai.api_key = "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"
+        client = OpenAI(
+            api_key = "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"
+        )
 
         try:
             # Generate a response using OpenAI
-            response = openai.Completion.create(
-                model = "davinci",
-                prompt = "Say Banana Banana",
-                temperature = 0.9,
-                max_tokens = 150
+            chat_completion = client.chat.completions.create(
+                messages= [
+                    {
+                        "text": event['text'],
+                        "role": "user",
+                    }
+                ],
+                model="gpt-3.5-turbo-1106",
             )
 
-            print("response: ", response)
+            print("response: ", chat_completion)
 
             # Extract the text from the response
-            message = response.choices[0].message['content']
+            message = chat_completion.choices[0].message['content']
 
         except Exception as e:
             print(f"Error generating response: {str(e)}")
