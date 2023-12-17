@@ -1,6 +1,7 @@
 import json
 import requests
 import random
+import openai
 
 def lambda_handler(event, context):
     # Your GroupMe bot ID
@@ -13,6 +14,21 @@ def lambda_handler(event, context):
         groupme_post_message_url = "https://api.groupme.com/v3/bots/post"
 
         message = "Hey Cracka!"
+
+        try:
+            # Generate a response using OpenAI
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",  # or another model you prefer
+                messages=[{"role": "system", "content": "You are a helpful assistant."},
+                          {"role": "user", "content": event['text']}]
+            )
+
+            # Extract the text from the response
+            message = response.choices[0].message['content']
+
+        except Exception as e:
+            print(f"Error generating response: {str(e)}")
+            message = "Sorry, I couldn't process that."
 
         # Generate random number between 1 and 5
         number = random.randint(1, 5)
