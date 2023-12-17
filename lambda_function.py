@@ -6,6 +6,7 @@ def lambda_handler(event, context):
     bot_id = "b509b2b87ca46be9b0cddaaec6"
 
     # Parse the incoming event
+    print("Received event: " + json.dumps(event))
     message_data = json.loads(event['body'])
     print(message_data)
     print(message_data.get('sender_type'))
