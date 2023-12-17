@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     # Prepare the message
     message = {
         "bot_id": bot_id,
-        "text": "Hello"
+        "text": "Hello Sir"
     }
 
     # Send the message to the GroupMe chat
