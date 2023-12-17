@@ -7,6 +7,9 @@ def lambda_handler(event, context):
 
     # Parse the incoming event
     message_data = json.loads(event['body'])
+    print(message_data)
+    print(message_data.get('sender_type'))
+    print(message_data.get('sender_id'))
 
     # Check if the sender is not the bot itself
     # Assuming the message data includes sender_type or sender_id
