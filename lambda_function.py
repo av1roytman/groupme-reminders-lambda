@@ -3,6 +3,7 @@ import requests
 import random
 from openai import OpenAI
 import traceback
+import re
 
 bot_id = "b509b2b87ca46be9b0cddaaec6"
 groupme_post_message_url = "https://api.groupme.com/v3/bots/post"
@@ -56,9 +57,13 @@ def lambda_handler(event, context):
 
     random_numer = random.randint(0, 10)
 
+    # Check if message contains "Luke Butt" using regex
+    if re.search(r"luke butt", event['text'].lower()):
+        generate_response_and_send_message(event['text'])
+
     # Check if the sender is not the bot itself
     # Assuming the message data includes sender_type or sender_id
-    if event['sender_id'] != bot_id and event['sender_type'] != "bot" and random_numer > 9:
+    elif event['sender_id'] != bot_id and event['sender_type'] != "bot" and random_numer > 9:
         # GroupMe API endpoint for posting messages
 
         # Send the message
