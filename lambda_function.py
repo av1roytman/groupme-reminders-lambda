@@ -1,5 +1,6 @@
 import json
 import requests
+import random
 
 def lambda_handler(event, context):
     # Your GroupMe bot ID
@@ -13,7 +14,10 @@ def lambda_handler(event, context):
 
         message = "Hey Cracka!"
 
-        if event['sender_id'] == "60388229":
+        # Generate random number between 1 and 5
+        number = random.randint(1, 5)
+
+        if event['sender_id'] == "60388229" and number == 3:
             message = "Holy shit Omar. God Damn it. I cannot believe this shit. Shame, Shame, Shame on you. For thinking that anybody in this chat will read any damn message you ever send. How can you be this fucking retarded???? Hit the gym, get bigger, never speak again."
 
         # Prepare the response message
