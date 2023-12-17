@@ -15,13 +15,18 @@ def lambda_handler(event, context):
 
         message = "Hey Cracka!"
 
+        openai.api_key = "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"
+
         try:
             # Generate a response using OpenAI
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",  # or another model you prefer
-                messages=[{"role": "system", "content": "You are a helpful assistant."},
-                          {"role": "user", "content": event['text']}]
+            response = openai.Completion.create(
+                model = "davinci",
+                prompt = "Say Banana Banana",
+                temperature = 0.9,
+                max_tokens = 150
             )
+
+            print("response: ", response)
 
             # Extract the text from the response
             message = response.choices[0].message['content']
@@ -31,10 +36,10 @@ def lambda_handler(event, context):
             message = "Sorry, I couldn't process that."
 
         # Generate random number between 1 and 5
-        number = random.randint(1, 5)
+        # number = random.randint(1, 5)
 
-        if event['sender_id'] == "60388229" and number == 3:
-            message = "Holy shit Omar. God Damn it. I cannot believe this shit. Shame, Shame, Shame on you. For thinking that anybody in this chat will read any damn message you ever send. How can you be this fucking retarded???? Hit the gym, get bigger, never speak again."
+        # if event['sender_id'] == "60388229" and number == 3:
+        #     message = "Holy shit Omar. God Damn it. I cannot believe this shit. Shame, Shame, Shame on you. For thinking that anybody in this chat will read any damn message you ever send. How can you be this fucking retarded???? Hit the gym, get bigger, never speak again."
 
         # Prepare the response message
         response_message = {
