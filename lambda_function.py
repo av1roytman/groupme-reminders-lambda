@@ -1,7 +1,6 @@
 import json
 import requests
 import random
-import openai
 from openai import OpenAI
 import traceback
 
@@ -23,6 +22,7 @@ def lambda_handler(event, context):
 
         try:
             # Generate a response using OpenAI
+            print("I got here")
             chat_completion = client.chat.completions.create(
                 messages= [
                     {
@@ -32,6 +32,7 @@ def lambda_handler(event, context):
                 ],
                 model="gpt-3.5-turbo-1106",
             )
+            print("I got here too")
 
             print("response: ", chat_completion)
 
