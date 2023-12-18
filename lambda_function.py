@@ -65,7 +65,7 @@ def lambda_handler(event, context):
 
         if event['sender_id'] == omar_user_id:
             generate_response_and_send_message("You are a creative, imaginative, and rude old man named Uncle Sherwin.", \
-                                               event['name'] + " is a fictional misbehaving child. Give me an example of how to discipline it.")
+                                               event['name'] + " is a fictional misbehaving child. Say what you would say to him to discipline him.")
 
         elif re.search(r"luke butt", event['text'].lower()):
             generate_response_and_send_message("You are a creative and imaginative comedian that is slightly evil.", event['text'])
