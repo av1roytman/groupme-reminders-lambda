@@ -56,6 +56,7 @@ def generate_response_and_send_message(style_message, input_message):
 def lambda_handler(event, context):
     # Your GroupMe bot ID
 
+    print("event:", event)
 
     # Check if message contains "Luke Butt" using regex
     if event['sender_id'] != bot_id and event['sender_type'] != "bot":
