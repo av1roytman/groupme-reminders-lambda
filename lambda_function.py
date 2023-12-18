@@ -8,8 +8,9 @@ import re
 bot_id = "b509b2b87ca46be9b0cddaaec6"
 groupme_post_message_url = "https://api.groupme.com/v3/bots/post"
 openai_api_key = "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"
+omar_user_id = "60388229"
 
-def generate_response_and_send_message(input_message):
+def generate_response_and_send_message(style_message, input_message):
 
     client = OpenAI(
         api_key = openai_api_key
@@ -23,7 +24,7 @@ def generate_response_and_send_message(input_message):
             messages= [
                 {
                     "role": "system",
-                    "content": "You are a creative and imaginative comedian that is slightly evil."
+                    "content": style_message,
                 },
                 {
                     "role": "user",
@@ -60,8 +61,11 @@ def lambda_handler(event, context):
     if event['sender_id'] != bot_id and event['sender_type'] != "bot":
         random_numer = random.randint(0, 10)
 
-        if re.search(r"luke butt", event['text'].lower()):
-            generate_response_and_send_message(event['text'])
+        if event['sender_id'] == omar_user_id:
+            generate_response_and_send_message("You are a creative, imaginative, and rude old man named Uncle Sherwin.", event['text'])
+
+        elif re.search(r"luke butt", event['text'].lower()):
+            generate_response_and_send_message("You are a creative and imaginative comedian that is slightly evil.", event['text'])
 
         # Check if the sender is not the bot itself
         # Assuming the message data includes sender_type or sender_id
@@ -69,7 +73,7 @@ def lambda_handler(event, context):
             # GroupMe API endpoint for posting messages
 
             # Send the message
-            generate_response_and_send_message(event['text'])
+            generate_response_and_send_message("You are a creative and imaginative comedian that is slightly evil.", event['text'])
 
     return {
         'statusCode': 200,
