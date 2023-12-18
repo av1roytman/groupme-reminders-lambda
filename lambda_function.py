@@ -33,6 +33,7 @@ def generate_response_and_send_message(style_message, input_message):
             ],
             model="gpt-3.5-turbo-1106",
             max_tokens=150,
+            temperature=0.9,
         )
 
         # Extract the text from the response
