@@ -3,11 +3,12 @@ import requests
 import random
 from openai import OpenAI
 import traceback
+import os
 import re
 
-bot_id = "b509b2b87ca46be9b0cddaaec6"
+bot_id = os.environ['BOT_ID']
 groupme_post_message_url = "https://api.groupme.com/v3/bots/post"
-openai_api_key = "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"
+openai_api_key = os.environ['OPENAI_API_KEY']
 omar_user_id = "60388229"
 
 def generate_response_and_send_message(style_message, input_message):
