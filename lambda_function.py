@@ -72,7 +72,7 @@ def lambda_handler(event, context):
     if event['sender_id'] != bot_id and event['sender_type'] != "bot":
         random_numer = random.randint(0, 100)
 
-        if re.search(r"luke butt", event['text'].lower()):
+        if re.search(r"uncle sherwin", event['text'].lower()):
             generate_response_and_send_message("You are helpful assistant with a sense of humor", event['text'])
 
         # Check if the sender is not the bot itself
