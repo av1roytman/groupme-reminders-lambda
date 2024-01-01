@@ -1,10 +1,8 @@
 import json
 import requests
-import random
-import traceback
 import os
-import re
 import boto3
+import datetime
 
 bot_id = os.environ['BOT_ID']
 table_name = os.environ['TABLE_NAME']
@@ -26,9 +24,16 @@ def lambda_handler(event, context):
     response = table.scan()
     reminders = response['Items']
 
+    # Get current date
+    today = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M")
+
     # Print all reminders
     for reminder in reminders:
-        print(reminder)
+        # If eventDate is today (only compare year, month, and day, not hours and minutes), send message
+        if reminder['eventDate'][:10] == today[:10]:
+            extractedHourMinute = reminder['eventTime'][11:16]
+            convertToEnglish = datetime.datetime.strptime(extractedHourMinute, "%H:%M").strftime("%I:%M %p")
+            send_message('Reminder: ' + reminder['eventName'] + ' at ' + convertToEnglish)
     
 
     return {
