@@ -36,7 +36,7 @@ def lambda_handler(event, context):
         print(reminder['eventDate'][:10])
         print(today[:10])
         if reminder['eventDate'][:10] == today[:10]:
-            extractedHourMinute = reminder['eventTime'][11:16]
+            extractedHourMinute = reminder['eventDate'][11:16]
             print(extractedHourMinute)
             convertToEnglish = datetime.datetime.strptime(extractedHourMinute, "%H:%M").strftime("%I:%M %p")
             print(convertToEnglish)
