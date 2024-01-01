@@ -3,6 +3,7 @@ import requests
 import os
 import boto3
 import datetime
+import pytz
 
 bot_id = os.environ['BOT_ID']
 table_name = os.environ['TABLE_NAME']
@@ -25,7 +26,8 @@ def lambda_handler(event, context):
     reminders = response['Items']
 
     # Get current date
-    today = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M")
+    est = pytz.timezone('US/Eastern')
+    today = datetime.datetime.now(est).strftime("%Y-%m-%dT%H:%M")
 
     # Print all reminders
     for reminder in reminders:
