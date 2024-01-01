@@ -32,6 +32,7 @@ def lambda_handler(event, context):
     
 
     return {
+        'reminders': reminders,
         'statusCode': 200,
         'body': json.dumps('OK')
     }
